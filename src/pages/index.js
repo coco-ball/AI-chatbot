@@ -2,6 +2,22 @@ import { Chat } from "@/components/Chat";
 import Head from "next/head";
 import { useEffect, useRef, useState } from "react";
 
+// firebase 관련 모듈을 불러옵니다.
+import { db } from "@/firebase";
+import {
+  collection,
+  query,
+  doc,
+  getDocs,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  orderBy,
+  where,
+} from "firebase/firestore";
+
+const chatCollection = collection(db, "chat");
+
 export default function Home() {
   /*
     메시지 목록을 저장하는 상태로, 메시지의 형태는 다음과 같음
@@ -35,6 +51,7 @@ export default function Home() {
     // message 형태 = { role: "user", content: string }
     // ChatInput.js 26번째 줄 참고
     const updatedMessages = [...messages, message];
+    const addInput = await addDoc(chatCollection, message);
     // console.log(updatedMessages);
     // console.log(updatedMessages.slice(-6));
 
@@ -53,6 +70,7 @@ export default function Home() {
         messages: updatedMessages.slice(-6),
       }),
     });
+    console.log(response);
 
     if (!response.ok) {
       setLoading(false);
@@ -62,12 +80,13 @@ export default function Home() {
     // 응답을 JSON 형태로 변환
     // 비동기 API 를 사용하여 응답을 받기 때문에 await 사용
     const result = await response.json();
+    const addResult = await addDoc(chatCollection, result);
 
     if (!result) {
       return;
     }
 
-    // console.log(result);
+    console.log(result);
 
     // 로딩 상태를 해제하고, 메시지 목록에 응답을 추가
     setLoading(false);
@@ -80,7 +99,7 @@ export default function Home() {
     setMessages([
       {
         role: "assistant",
-        content: "안녕? 나는 엘리엇이야. 오늘은 무슨 일이 있었니?",
+        content: "안녕, 코코볼! 궁금한 게 있다면 물어봐.",
       },
     ]);
   };
