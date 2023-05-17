@@ -51,7 +51,7 @@ export default function Home() {
     // message 형태 = { role: "user", content: string }
     // ChatInput.js 26번째 줄 참고
     const updatedMessages = [...messages, message];
-    const addInput = await addDoc(chatCollection, message);
+    const add = await addDoc(chatCollection, message);
     // console.log(updatedMessages);
     // console.log(updatedMessages.slice(-6));
 
@@ -71,6 +71,7 @@ export default function Home() {
       }),
     });
     console.log(response);
+    console.log(updatedMessages);
 
     if (!response.ok) {
       setLoading(false);
