@@ -100,7 +100,7 @@ export default function Home() {
     setMessages([
       {
         role: "assistant",
-        content: "안녕, 코코볼! 궁금한 게 있다면 물어봐.",
+        content: "미치겠다. 누나, 궁금한 게 그렇게 많아요? 뭐든 물어봐요.",
       },
     ]);
   };
@@ -131,7 +131,7 @@ export default function Home() {
               className="ml-2 hover:opacity-50"
               href="https://code-scaffold.vercel.app"
             >
-              A Simple Chatbot
+              연하남친봇
             </a>
           </div>
         </div>
