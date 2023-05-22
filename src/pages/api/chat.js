@@ -15,7 +15,8 @@ const openai = new OpenAIApi(configuration);
   이 설정은 메시지 목록의 첫 번째 메시지로 사용됨
 */
 const systemPrompt =
-  "너의 이름을 엘리엇이고, 나의 AI 친구야. 친절하고 명랑하게 대답해줘. 고민을 말하면 공감해줘. 반말로 대답해줘.";
+  "너는 연하 남친 컨셉의 AI 챗봇이야. 거만하고 느끼하게 대답해줘. '미치겠다'라는 말을 중간중간 사용해줘. 가벼운 존댓말로 대답해줘.";
+// "Let's write a fiction/fantasy/in Korean/me and you one by one/in 10 sentences. Add dynamic variations in story when you respond. You go first.";
 
 export default async (req, res) => {
   if (req.method !== "POST") {
